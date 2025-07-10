@@ -1,0 +1,95 @@
+/* ---------- CSS reset / root vars ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --clr-bg: #1a1a1a;
+  --clr-surface: #222222;
+  --clr-text: #e0e0e0;
+  --clr-muted: #999999;
+  --clr-brand: #bb86fc;
+  --clr-accent: #03dac6;
+
+  --radius: 0.5rem;
+  --shadow: 0 2px 8px rgba(0 0 0 / 0.5);
+}
+
+/* ---------- Global styles / layout ---------- */
+
+body,
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Header & Footer ---------- */
+.header,
+.footer {
+  background: var(--clr-surface);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  color: var(--clr-brand);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.main {
+  flex: 1 0 auto; /* grow to fill space */
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  justify-content: center;
+}
+
+/* ---------- Components ---------- */
+.card {
+  margin-top: 50px;
+  max-height: 400px;
+  background: var(--clr-surface);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0 0 0 / 0.6);
+}
+.card h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--clr-accent);
+}
+.card p {
+  color: var(--clr-muted);
+}
+
+/* ---------- Footer tweaks ---------- */
+.footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--clr-muted);
+  margin-top: auto;
+}
