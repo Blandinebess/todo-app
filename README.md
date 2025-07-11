@@ -75,7 +75,14 @@ my-app/
 
 ---
 
-## ℹ️ Why This Template?
+## ## Day 4 – Update & Delete Todo Items
+
+Today’s updates focus on extending the functionality of our helper module (`src/dynamo.js`) to allow modification and deletion of Todo items in DynamoDB.
+
+### ✅ Features Implemented
+- **Update Todo:** Toggle a todo item’s `completed` status by calling:
+  ```js
+  updateTodo("123", { completed: true });
 
 - **Exposes Webpack config** so you understand loader/plugin setup.
 - **Automates** repetitive setup via `npx`, reducing “it works on my machine” issues.
