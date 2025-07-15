@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {
   DynamoDBDocumentClient,
   ScanCommand,
   PutCommand,
 } from "@aws-sdk/lib-dynamodb";
+import { updateTodo, deleteTodo } from "./components/dynamo.js";
 
 const client = new DynamoDBClient({
   region: process.env.REACT_APP_AWS_REGION,
@@ -42,6 +43,20 @@ export default function App() {
     setText("");
   };
 
+  const handleToggle = async (todo) => {
+    await updateTodo(todo.id, { completed: !todo.completed });
+    setTodos(prev =>
+      prev.map(t =>
+        t.id === todo.id ? { ...t, completed: !t.completed } : t
+      )
+    );
+  };
+
+  const handleDelete = async (todoId) => {
+    await deleteTodo(todoId);
+    setTodos(prev => prev.filter(t => t.id !== todoId));
+  };
+
   return (
     <div style={{ padding: 20 }}>
       <h1>Todo App</h1>
@@ -54,10 +69,31 @@ export default function App() {
       <button onClick={handleAdd}>Add</button>
 
       <ul style={{ marginTop: 16 }}>
-        {todos.map((t) => (
-          <li key={t.id}>{t.text}</li>
+        {todos.map((todo) => (
+          <li key={todo.id} style={{ display: "flex", alignItems: "center" }}>
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={() => handleToggle(todo)}
+            />
+            <span
+              style={{
+                marginLeft: "8px",
+                textDecoration: todo.completed ? "line-through" : "none",
+              }}
+            >
+              {todo.text}
+            </span>
+            <button
+              style={{ marginLeft: "auto", color: "red" }}
+              onClick={() => handleDelete(todo.id)}
+            >
+              ×
+            </button>
+          </li>
         ))}
       </ul>
     </div>
   );
 }
+

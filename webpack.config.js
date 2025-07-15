@@ -55,7 +55,12 @@ export default (_env, argv) => {
     plugins: [
       new HtmlWebpackPlugin({ template: "public/index.html" }),
       !prod && new ReactRefreshWebpackPlugin(),
-      !prod && new Dotenv()
+      !prod && new Dotenv(),
+      prod && new webpack.DefinePlugin({
+    "process.env.REACT_APP_AWS_REGION": JSON.stringify(
+      process.env.REACT_APP_AWS_REGION
+)
+})
     ].filter(Boolean),
     mode: prod ? "production" : "development",
     performance: { hints: false },

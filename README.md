@@ -91,3 +91,9 @@ Today’s updates focus on extending the functionality of our helper module (`sr
 
 Happy coding!
 Feel free to peek into any config files when you’re curious—everything you need is right here.
+
+## Day 4: Update & Delete Functionality
+
+- Toggled todos using `updateTodo(id, { completed: true })`
+- Removed todos with `deleteTodo(id)`
+- Changes reflected instantly in UI and stored in DynamoDB
