@@ -61,7 +61,7 @@ export default (_env, argv) => {
           "process.env.REACT_APP_AWS_REGION": JSON.stringify(
             process.env.REACT_APP_AWS_REGION
           ),
-          "process.env.REACT_APP_AWS_ACCESS_KEYI_ID": JSON.stringify(
+          "process.env.REACT_APP_AWS_ACCESS_KEY_ID": JSON.stringify(
             process.env.REACT_APP_AWS_ACCESS_KEY_ID
           ),
           "process.env.REACT_APP_AWS_SECRET_ACCESS_KEY": JSON.stringify(
