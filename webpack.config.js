@@ -2,7 +2,7 @@ import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import Dotenv from "dotenv-webpack";
-
+import { webpack } from "webpack";
 export default (_env, argv) => {
   const prod = argv.mode === "production";
 
@@ -56,11 +56,19 @@ export default (_env, argv) => {
       new HtmlWebpackPlugin({ template: "public/index.html" }),
       !prod && new ReactRefreshWebpackPlugin(),
       !prod && new Dotenv(),
-      prod && new webpack.DefinePlugin({
-    "process.env.REACT_APP_AWS_REGION": JSON.stringify(
-      process.env.REACT_APP_AWS_REGION
-)
-})
+
+      prod &&
+        new webpack.DefinePlugin({
+          "process.env.REACT_APP_AWS_REGION": JSON.stringify(
+            process.env.REACT_APP_AWS_REGION
+          ),
+          "process.env.REACT_APP_AWS_ACCESS_KEY": JSON.stringify(
+            process.env.REACT_APP_AWS_ACCESS_KEY
+          ),
+          "process.env.REACT_APP_AWS_SECRET_ACCESS_KEY": JSON.stringify(
+            process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
+          ),
+        }),
     ].filter(Boolean),
     mode: prod ? "production" : "development",
     performance: { hints: false },
