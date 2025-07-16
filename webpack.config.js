@@ -56,14 +56,13 @@ export default (_env, argv) => {
       new HtmlWebpackPlugin({ template: "public/index.html" }),
       !prod && new ReactRefreshWebpackPlugin(),
       !prod && new Dotenv(),
-
       prod &&
         new webpack.DefinePlugin({
           "process.env.REACT_APP_AWS_REGION": JSON.stringify(
             process.env.REACT_APP_AWS_REGION
           ),
-          "process.env.REACT_APP_AWS_ACCESS_KEY": JSON.stringify(
-            process.env.REACT_APP_AWS_ACCESS_KEY
+          "process.env.REACT_APP_AWS_ACCESS_KEYI_ID": JSON.stringify(
+            process.env.REACT_APP_AWS_ACCESS_KEY_ID
           ),
           "process.env.REACT_APP_AWS_SECRET_ACCESS_KEY": JSON.stringify(
             process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
