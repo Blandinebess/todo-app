@@ -2,7 +2,7 @@ import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import Dotenv from "dotenv-webpack";
-import { webpack } from "webpack";
+import webpack  from "webpack";
 export default (_env, argv) => {
   const prod = argv.mode === "production";
 
